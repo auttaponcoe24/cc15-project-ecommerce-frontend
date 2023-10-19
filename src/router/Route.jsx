@@ -10,6 +10,8 @@ import RedirectIfAuthenticated from "../features/auth/RedirectIfAuthenticated";
 import Authenticated from "../features/auth/Authenticated";
 import CategoryPage from "../pages/CategoryPage";
 import CartPage from "../pages/CartPage";
+import OrderPage from "../pages/OrderPage";
+import AdminPage from "../pages/AdminPage";
 
 const router = createBrowserRouter([
 	{
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
 					</Authenticated>
 				),
 			},
+			{
+				path: "/cart/confirmorder",
+				element: (
+					<Authenticated>
+						<OrderPage />
+					</Authenticated>
+				),
+			},
 		],
 	},
 	{
@@ -45,6 +55,14 @@ const router = createBrowserRouter([
 		element: (
 			<RedirectIfAuthenticated>
 				<RegisterPage />
+			</RedirectIfAuthenticated>
+		),
+	},
+	{
+		path: "/admin",
+		element: (
+			<RedirectIfAuthenticated>
+				<AdminPage />
 			</RedirectIfAuthenticated>
 		),
 	},

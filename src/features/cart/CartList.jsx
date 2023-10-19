@@ -1,7 +1,7 @@
 import CartItem from "./CartItem";
 
 export default function CartList({ cartUser, deleteCart }) {
-	console.log(cartUser);
+	// console.log(cartUser);
 
 	return (
 		<div className="flex flex-col gap-4 items-center justify-center">
@@ -13,7 +13,7 @@ export default function CartList({ cartUser, deleteCart }) {
 						name={item.product?.name ?? "test"}
 						images={item.product?.images ?? ""}
 						price={item.product?.price ?? 1000}
-						quantiry={item.quantiry ?? 1}
+						amount={item.amount}
 						deleteCart={deleteCart}
 					/>
 				</div>

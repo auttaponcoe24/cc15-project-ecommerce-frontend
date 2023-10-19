@@ -7,9 +7,7 @@ export const ProductContext = createContext();
 
 function ProductContextProvider({ children }) {
 	// const { getAccessToken } = useAuth();
-	const [cart, setCart] = useState({
-		quantiry: 1,
-	});
+	const [cart, setCart] = useState({ amount: 1 });
 
 	// render data=productAll
 	const [getProduct, setGetProduct] = useState([]);
@@ -17,7 +15,24 @@ function ProductContextProvider({ children }) {
 	// render data=product in cart
 	const [cartUser, setCartUser] = useState([]);
 
-	const [sumAllPrice, setSumAllPrice] = useState([]);
+	const [sumTotalProduct, setSumTotalProduct] = useState(0);
+
+	const [statusOrder, setStatusOrder] = useState({
+		status: "INCART",
+	});
+
+	const [numOrderId, setNumOrderId] = useState(0);
+
+	const getCartItems = () => {
+		axios
+			.get("/cart")
+			.then((res) => {
+				setCartUser(res.data.cart);
+				setSumTotalProduct(res.data.sumTotalProduct);
+				// console.log(res.data);
+			})
+			.catch((err) => console.log(err));
+	};
 
 	useEffect(() => {
 		const fatchProduct = async () => {
@@ -34,29 +49,16 @@ function ProductContextProvider({ children }) {
 
 	useEffect(() => {
 		if (getAccessToken()) {
-			axios
-				.get("/cart")
-				.then((res) => {
-					setCartUser(res.data.cart);
-
-					setSumAllPrice(
-						res.data.cart.reduce((acc, item) => {
-							acc +=
-								Number(item.quantiry) *
-								Number(item.product.price);
-							return acc;
-						}, 0)
-					);
-				})
-				.catch((err) => console.log(err));
+			getCartItems();
 		}
 	}, []);
 
 	const deleteCart = async (cartId) => {
 		try {
-			await axios.delete(`/cart/${cartId}`);
+			const res = await axios.delete(`/cart/${cartId}`);
+			// console.log(res);
 			setCartUser(cartUser.filter((el) => el.id !== cartId));
-			setSumAllPrice();
+			setSumTotalProduct({ ...sumTotalProduct });
 		} catch (err) {
 			console.log(err);
 		}
@@ -66,7 +68,15 @@ function ProductContextProvider({ children }) {
 		try {
 			await axios.delete("/cart/deleteCartAll");
 			setCartUser([]);
-			setSumAllPrice(0);
+			setSumTotalProduct(0);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const createOrderItem = async (orderId) => {
+		try {
+			await axios.post(`/order/confirmorder/check/${orderId}`);
 		} catch (err) {
 			console.log(err);
 		}
@@ -82,8 +92,13 @@ function ProductContextProvider({ children }) {
 				setCartUser,
 				deleteCart,
 				deleteCartAll,
-				sumAllPrice,
-				setSumAllPrice,
+				sumTotalProduct,
+				statusOrder,
+				setStatusOrder,
+				getCartItems,
+				createOrderItem,
+				numOrderId,
+				setNumOrderId,
 			}}
 		>
 			{children}

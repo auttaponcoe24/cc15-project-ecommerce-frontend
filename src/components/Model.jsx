@@ -9,8 +9,8 @@ export default function Model({
 		<>
 			{open && (
 				<>
-					<div className="fixed inset-0 bg-white opacity-70"></div>
-					<div className="fixed inset-0 z-30">
+					<div className="fixed inset-0 bg-white opacity-70 z-30"></div>
+					<div className="fixed inset-0 z-40">
 						<div className="flex justify-center items-center min-h-full p-4">
 							<div
 								className="rounded-lg w-full bg-white shadow-2xl border"

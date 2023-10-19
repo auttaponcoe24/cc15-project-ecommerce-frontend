@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import { BsTrash } from "react-icons/bs";
+import { useProduct } from "../../hooks/use-product";
 
 export default function CartItem({
 	name,
 	images,
 	price,
-	quantiry,
 	deleteCart,
 	cartObj,
+	amount,
 }) {
-	const [current, setCurrent] = useState(quantiry);
-	const [sumPrice, setSumPrice] = useState(price * quantiry);
+	// const { amount, setAmount } = useProduct();
+	const [current, setCurrent] = useState(amount);
+	const [sumProduct, setSumProduct] = useState(price * amount);
 
 	const handleClickIncrease = () => {
 		setCurrent(current + 1);
-		setSumPrice(price * (current + 1));
+		setSumProduct(price * (current + 1));
 	};
 
 	const handleClickDecrease = async () => {
 		setCurrent(current - 1);
-		setSumPrice(price * (current - 1));
+		setSumProduct(price * (current - 1));
 	};
 
 	const handleClickDelete = () => {
@@ -49,7 +51,7 @@ export default function CartItem({
 						</div>
 						<div className="flex gap-2 items-center">
 							<div className="text-red-500 font-semibold text-xl">
-								{sumPrice}
+								{sumProduct}
 							</div>
 							<div className="font-bold">TOTAL</div>
 						</div>

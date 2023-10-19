@@ -1,13 +1,13 @@
 import axios from "../config/axios";
 import React, { useEffect, useState } from "react";
 import Button from "../features/product/Button";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, Link } from "react-router-dom";
 import { useAuth } from "../hooks/use-auth";
 import { useProduct } from "../hooks/use-product.js";
 
 export default function ProductPage() {
 	const { authUser } = useAuth();
-	const { cart, setCart } = useProduct();
+	const { cart, setCart, getCartItems } = useProduct();
 
 	const { productId } = useParams();
 	const [productUser, setProductUser] = useState({});
@@ -17,23 +17,25 @@ export default function ProductPage() {
 			.get(`/product/${productId}`)
 			.then((res) => {
 				console.log(res);
-				setProductUser(res.data.product);
+				setProductUser(res.data.productId);
 			})
 			.catch((err) => console.log(err));
 	}, [productId]);
 
 	const handleClickAddProductMyCart = async (cart) => {
 		if (!authUser) {
-			console.log("ff");
+			// console.log("ff");
 			return <Navigate to="/login" />;
 		} else {
+			// setAmount({...amount, amount : 1})
+
 			await axios
-				.post(`/cart/${productId}`, cart)
+				.post(`/cart/mycart/${productId}`, cart)
 				.then((res) => {
-					// setCart(res.data.addCart?.quantiry);
 					console.log(res.data);
 				})
 				.catch((err) => console.log(err));
+			getCartItems();
 		}
 	};
 
@@ -74,21 +76,31 @@ export default function ProductPage() {
 										onChange={(e) =>
 											setCart({
 												...cart,
-												quantiry: +e.target.value,
+												amount: +e.target.value,
 											})
 										}
 										className="border px-2 py-2 text-xl font-semibold focus:outline-none rounded-lg"
-										value={cart.quantiry}
+										value={cart.amount}
 										placeholder="AMOUNT PRODUCT..."
 									/>
 								</div>
-								<Button
-									onClick={() =>
-										handleClickAddProductMyCart(cart)
-									}
-								>
-									ADD TO CART
-								</Button>
+								{authUser ? (
+									<Link to="/cart">
+										<Button
+											onClick={() =>
+												handleClickAddProductMyCart(
+													cart
+												)
+											}
+										>
+											ADD TO CART
+										</Button>
+									</Link>
+								) : (
+									<Link to="/login">
+										<Button>ADD TO CART</Button>
+									</Link>
+								)}
 							</div>
 						</div>
 					</>

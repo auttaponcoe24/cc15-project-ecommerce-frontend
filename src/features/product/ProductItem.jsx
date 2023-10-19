@@ -3,24 +3,26 @@ import Button from "./Button";
 import Model from "../../components/Model";
 import CartInModel from "../cart/CartInModel";
 import axios from "../../config/axios";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useProduct } from "../../hooks/use-product";
+import { useAuth } from "../../hooks/use-auth";
 
 export default function ProductItem({ id, name, price, image }) {
 	const [isOpen, setIsOpen] = useState(false);
 
-	const { cart, setCart, setCartUser, setSumAllPrice } = useProduct();
+	const { cart, setCart, setCartUser } = useProduct();
+	const { authUser } = useAuth();
 
 	const handleClickAddProductMyCart = async (cart) => {
 		try {
-			setCart({ ...cart, quantiry: 1 });
-			const res = await axios.post(`/cart/${id}`, cart);
+			setCart({ ...cart, amount: 1 });
+			const res = await axios.post(`/cart/mycart/${id}`, cart);
 			console.log(res.data);
 			setCartUser((p) => {
 				if (p.length > 0) return [...p, res.data.addCart];
 				return [res.data.addCart];
 			});
-			// setSumAllPrice();
+
 			setIsOpen(true);
 		} catch (err) {
 			console.log(err);
@@ -37,9 +39,15 @@ export default function ProductItem({ id, name, price, image }) {
 			<h1 className="text-red-400 font-mono font-semibold text-2xl">
 				{price}
 			</h1>
-			<Button onClick={() => handleClickAddProductMyCart(cart)}>
-				ADD TO CART
-			</Button>
+			{authUser ? (
+				<Button onClick={() => handleClickAddProductMyCart(cart)}>
+					ADD TO CART
+				</Button>
+			) : (
+				<Link to="/login">
+					<Button>ADD TO CART</Button>
+				</Link>
+			)}
 
 			<Model
 				className=""

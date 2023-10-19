@@ -2,9 +2,35 @@ import CartList from "../features/cart/CartList";
 import Button from "../features/cart/Button";
 import { BsTrash } from "react-icons/bs";
 import { useProduct } from "../hooks/use-product";
+import { Link } from "react-router-dom";
+import axios from "../config/axios";
+import { useState } from "react";
 
 export default function CartPage() {
-	const { cartUser, deleteCart, deleteCartAll, sumAllPrice } = useProduct();
+	const {
+		cartUser,
+		deleteCart,
+		deleteCartAll,
+		sumTotalProduct,
+		statusOrder,
+		setNumOrderId,
+	} = useProduct();
+
+	const urlPathConfirmorder = "/cart/confirmorder";
+
+	const handleClikeCheckout = async () => {
+		try {
+			const { data } = await axios.post(
+				"order/confirmorder/incart",
+				statusOrder
+			);
+			setNumOrderId(data.createOrder.id);
+			console.log("orderId", data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<>
 			<div className="max-w-4xl mx-auto my-4 flex flex-col justify-center">
@@ -21,7 +47,7 @@ export default function CartPage() {
 						</div>
 						<div className="flex gap-2">
 							<span className="text-red-500">
-								{sumAllPrice}...
+								...{sumTotalProduct}...
 							</span>
 							<span className="font-bold">THB</span>
 						</div>
@@ -35,9 +61,14 @@ export default function CartPage() {
 					<BsTrash size={20} /> <span>Cancel All Products</span>
 				</div>
 				<div className="mx-auto">
-					<Button style="bg-blue-500 text-white px-6 py-2">
-						Checkout
-					</Button>
+					<Link to={urlPathConfirmorder}>
+						<Button
+							style="bg-blue-500 text-white px-6 py-2"
+							onClick={handleClikeCheckout}
+						>
+							Checkout
+						</Button>
+					</Link>
 				</div>
 			</div>
 		</>
