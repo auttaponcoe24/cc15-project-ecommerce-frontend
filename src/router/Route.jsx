@@ -12,6 +12,10 @@ import CategoryPage from "../pages/CategoryPage";
 import CartPage from "../pages/CartPage";
 import OrderPage from "../pages/OrderPage";
 import AdminPage from "../pages/AdminPage";
+import Orders from "../features/admin/Orders";
+import Products from "../features/admin/Products";
+import AuthenticatedAdmin from "../features/auth/AuthenticatedAdmin";
+import LayoutAdmin from "../layout/LayoutAdmin";
 
 const router = createBrowserRouter([
 	{
@@ -61,10 +65,21 @@ const router = createBrowserRouter([
 	{
 		path: "/admin",
 		element: (
-			<RedirectIfAuthenticated>
-				<AdminPage />
-			</RedirectIfAuthenticated>
+			<AuthenticatedAdmin>
+				<LayoutAdmin />
+			</AuthenticatedAdmin>
 		),
+		children: [
+			{ path: "", element: <AdminPage /> },
+			{
+				path: "orders",
+				element: <Orders />,
+			},
+			{
+				path: "products",
+				element: <Products />,
+			},
+		],
 	},
 ]);
 

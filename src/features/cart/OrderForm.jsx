@@ -28,7 +28,9 @@ export default function OrderForm({
 			}
 
 			setLoading(true);
+
 			await changeStatusUploadSlip(formData);
+
 			createOrderItem(numOrderId);
 			deleteCartAll();
 			setIsOpen(true);

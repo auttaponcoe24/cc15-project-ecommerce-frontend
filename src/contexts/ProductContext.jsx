@@ -23,6 +23,8 @@ function ProductContextProvider({ children }) {
 
 	const [numOrderId, setNumOrderId] = useState(0);
 
+	const [fatchOrder, setFatchOrder] = useState([]);
+
 	const getCartItems = () => {
 		axios
 			.get("/cart")
@@ -82,6 +84,29 @@ function ProductContextProvider({ children }) {
 		}
 	};
 
+	// admin
+
+	useEffect(() => {
+		const fatchOrderItem = async () => {
+			try {
+				const res = await axios.get(`/order/orderitem`);
+				// console.log(res);
+				setFatchOrder(res.data.order);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		fatchOrderItem();
+	}, []);
+
+	const panddingChangeSuccess = async (orderId) => {
+		try {
+			await axios.patch(`/order/confirmorder/success/${orderId}`);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<ProductContext.Provider
 			value={{
@@ -99,6 +124,8 @@ function ProductContextProvider({ children }) {
 				createOrderItem,
 				numOrderId,
 				setNumOrderId,
+				fatchOrder,
+				panddingChangeSuccess,
 			}}
 		>
 			{children}
