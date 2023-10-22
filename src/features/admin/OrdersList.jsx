@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import OrdersItem from "./OrdersItem";
 
 export default function OrdersList({ data }) {
-	// console.log(data);
+	console.log(data);
 
 	return (
 		<>
-			<div className="flex flex-col gap-4 px-4  py-4">
+			<div className="flex flex-col px-4  py-4">
 				{data.map((item, index) => (
 					<div key={index}>
 						<OrdersItem
@@ -16,6 +16,8 @@ export default function OrdersList({ data }) {
 							arrProduct={item.orderItems}
 							arrPrice={item.orderItems}
 							arrAmount={item.orderItems}
+							name={item.user.firstName}
+							address={item.user.address}
 							status={item.status}
 						/>
 					</div>

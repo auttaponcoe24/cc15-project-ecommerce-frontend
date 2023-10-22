@@ -46,6 +46,12 @@ export default function AuthContextProvider({ children }) {
 		setAuthUser(null);
 	};
 
+	const editAccount = async (data) => {
+		const res = await axios.patch("/auth/editaccount", data);
+		// console.log(res.data);
+		setAuthUser(res.data.editAccount);
+	};
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -55,6 +61,7 @@ export default function AuthContextProvider({ children }) {
 				logout,
 				initialLoading,
 				getAccessToken,
+				editAccount,
 			}}
 		>
 			{children}

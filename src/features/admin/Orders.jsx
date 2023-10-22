@@ -32,11 +32,12 @@ const test = [
 export default function Orders() {
 	const { fatchOrder } = useProduct();
 	return (
-		<div className="flex h-screen bg-slate-400">
+		<div className="flex h-screen ">
 			<div className="w-full ">
-				<ul className=" grid grid-cols-6 justify-items-center mx-4 my-4 text-2xl font-semibold text-white">
-					<li>ORDERS</li>
+				<ul className=" grid grid-cols-6 justify-items-center mx-4 my-4 text-2xl font-semibold text-gray-600 bg-white px-2 py-2 rounded-lg">
+					{/* <li>ORDERS</li> */}
 					<li>DATE</li>
+					<li>RECIPIENT</li>
 					<li>PRODUCT</li>
 					<li>AMOUNT</li>
 					<li>PRICE</li>

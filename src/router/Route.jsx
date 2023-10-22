@@ -16,6 +16,9 @@ import Orders from "../features/admin/Orders";
 import Products from "../features/admin/Products";
 import AuthenticatedAdmin from "../features/auth/AuthenticatedAdmin";
 import LayoutAdmin from "../layout/LayoutAdmin";
+import ProductAdd from "../features/admin/ProductAdd";
+import MyAccountPage from "../pages/MyAccountPage";
+import AccountSetting from "../features/auth/AccountSetting";
 
 const router = createBrowserRouter([
 	{
@@ -40,6 +43,22 @@ const router = createBrowserRouter([
 				element: (
 					<Authenticated>
 						<OrderPage />
+					</Authenticated>
+				),
+			},
+			{
+				path: "/account",
+				element: (
+					<Authenticated>
+						<MyAccountPage />
+					</Authenticated>
+				),
+			},
+			{
+				path: "/account/setting",
+				element: (
+					<Authenticated>
+						<AccountSetting />
 					</Authenticated>
 				),
 			},
@@ -78,6 +97,10 @@ const router = createBrowserRouter([
 			{
 				path: "products",
 				element: <Products />,
+			},
+			{
+				path: "products/add",
+				element: <ProductAdd />,
 			},
 		],
 	},

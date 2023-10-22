@@ -10,7 +10,7 @@ import { useAuth } from "../../hooks/use-auth";
 export default function ProductItem({ id, name, price, image }) {
 	const [isOpen, setIsOpen] = useState(false);
 
-	const { cart, setCart, setCartUser } = useProduct();
+	const { cart, setCart, setCartUser, setNumOrder, numOrder } = useProduct();
 	const { authUser } = useAuth();
 
 	const handleClickAddProductMyCart = async (cart) => {
@@ -22,6 +22,7 @@ export default function ProductItem({ id, name, price, image }) {
 				if (p.length > 0) return [...p, res.data.addCart];
 				return [res.data.addCart];
 			});
+			setNumOrder(numOrder + 1);
 
 			setIsOpen(true);
 		} catch (err) {

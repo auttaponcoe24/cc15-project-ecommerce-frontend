@@ -7,7 +7,7 @@ import { useProduct } from "../hooks/use-product.js";
 
 export default function ProductPage() {
 	const { authUser } = useAuth();
-	const { cart, setCart, getCartItems } = useProduct();
+	const { cart, setCart, getCartItems, setNumOrder, numOrder } = useProduct();
 
 	const { productId } = useParams();
 	const [productUser, setProductUser] = useState({});
@@ -28,14 +28,14 @@ export default function ProductPage() {
 			return <Navigate to="/login" />;
 		} else {
 			// setAmount({...amount, amount : 1})
+			try {
+				await axios.post(`/cart/mycart/${productId}`, cart);
 
-			await axios
-				.post(`/cart/mycart/${productId}`, cart)
-				.then((res) => {
-					console.log(res.data);
-				})
-				.catch((err) => console.log(err));
-			getCartItems();
+				setNumOrder(numOrder + 1);
+				getCartItems();
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	};
 

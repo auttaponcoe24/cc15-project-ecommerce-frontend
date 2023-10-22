@@ -3,9 +3,11 @@ import Menu from "./Menu";
 import { useAuth } from "../hooks/use-auth";
 import Dropdown from "./Dropdown";
 import { BsCart } from "react-icons/bs";
+import { useProduct } from "../hooks/use-product";
 
 export default function Header() {
 	const { authUser } = useAuth();
+	const { numOrder } = useProduct();
 	return (
 		<header className="grid grid-cols-4 px-4 bg-gray-500 shadow-lg sticky top-0 z-30">
 			{/* Logo */}
@@ -21,7 +23,12 @@ export default function Header() {
 			</div>
 
 			{/* Login */}
-			<div className="flex gap-4 justify-center items-center justify-self-end self-center text-white">
+			<div className="relative flex gap-6 justify-center items-center justify-self-end self-center text-white">
+				{numOrder > 0 && (
+					<div className="absolute flex justify-center items-center top-[-2px] left-3 text-sm bg-red-600 w-4 h-4 rounded-full">
+						{numOrder}
+					</div>
+				)}
 				<Link to="/cart">
 					<BsCart className="cursor-pointer hover:text-orange-500" />
 				</Link>

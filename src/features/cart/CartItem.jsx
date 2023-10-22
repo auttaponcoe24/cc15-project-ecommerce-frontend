@@ -4,24 +4,34 @@ import { useProduct } from "../../hooks/use-product";
 
 export default function CartItem({
 	name,
+	cartId,
 	images,
 	price,
 	deleteCart,
 	cartObj,
 	amount,
 }) {
-	// const { amount, setAmount } = useProduct();
+	const { changeAmount, cart, setCart } = useProduct();
 	const [current, setCurrent] = useState(amount);
 	const [sumProduct, setSumProduct] = useState(price * amount);
 
-	const handleClickIncrease = () => {
-		setCurrent(current + 1);
-		setSumProduct(price * (current + 1));
+	const handleClickIncrease = async () => {
+		try {
+			setCurrent(current + 1);
+			setSumProduct(price * (current + 1));
+			// console.log(cart);
+			// const change = { ...cart };
+			// console.log("change", { change, amount: current + 1 });
+			await changeAmount(cartId, { amount: current + 1 });
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	const handleClickDecrease = async () => {
 		setCurrent(current - 1);
 		setSumProduct(price * (current - 1));
+		await changeAmount(cartId, { amount: current - 1 });
 	};
 
 	const handleClickDelete = () => {
