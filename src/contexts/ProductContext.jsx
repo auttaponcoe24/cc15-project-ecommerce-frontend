@@ -28,6 +28,8 @@ function ProductContextProvider({ children }) {
 
 	const [fatchCategory, setFatchCategory] = useState([]);
 
+	const [fatchMyOrder, setFatchMyOrder] = useState([]);
+
 	const [numOrder, setNumOrder] = useState(0);
 
 	const getCartItems = () => {
@@ -95,6 +97,22 @@ function ProductContextProvider({ children }) {
 		await axios.patch(`cart/mycart/${cartId}/amount`, update);
 	};
 
+	useEffect(() => {
+		const fatchMyOrder = async () => {
+			try {
+				const res = await axios.get("/order/myorder");
+				console.log("fatchMyOrder2", res);
+				setFatchMyOrder(res.data.myOrder);
+				// if (res.status === 200) {
+				// 	window.location.reload();
+				// }
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		fatchMyOrder();
+	}, []);
+
 	// admin
 
 	useEffect(() => {
@@ -102,6 +120,7 @@ function ProductContextProvider({ children }) {
 			try {
 				const res = await axios.get(`/order/orderitem`);
 				console.log(res);
+
 				setFatchOrder(res.data.order);
 			} catch (err) {
 				console.log(err);
@@ -125,7 +144,13 @@ function ProductContextProvider({ children }) {
 
 	const panddingChangeSuccess = async (orderId) => {
 		try {
-			await axios.patch(`/order/confirmorder/success/${orderId}`);
+			const res = await axios.patch(
+				`/order/confirmorder/success/${orderId}`
+			);
+			// if (res.status === 200) {
+			// 	window.location.reload();
+			// }
+			setFatchOrder(res.data);
 		} catch (err) {
 			console.log(err);
 		}
@@ -133,7 +158,13 @@ function ProductContextProvider({ children }) {
 
 	const createProduct = async (formData) => {
 		try {
-			await axios.post(`/product/categoryId`, formData);
+			const res = await axios.post(`/product/categoryId`, formData);
+			console.log("createProduct", res);
+			if (res.status === 201) {
+				window.location.reload();
+				// fatchProduct()
+			}
+			// setGetProduct(res.data);
 		} catch (err) {
 			console.log(err);
 		}
@@ -143,6 +174,14 @@ function ProductContextProvider({ children }) {
 		try {
 			await axios.delete(`/product/${productId}/delete`);
 			setGetProduct(getProduct.filter((item) => item.id !== productId));
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const editProduct = async (productId, data) => {
+		try {
+			await axios.patch(`/product/editproduct/${productId}`, data);
 		} catch (err) {
 			console.log(err);
 		}
@@ -159,6 +198,7 @@ function ProductContextProvider({ children }) {
 				deleteCart,
 				deleteCartAll,
 				sumTotalProduct,
+				setSumTotalProduct,
 				statusOrder,
 				setStatusOrder,
 				getCartItems,
@@ -173,6 +213,8 @@ function ProductContextProvider({ children }) {
 				setNumOrder,
 				deleteProduct,
 				changeAmount,
+				fatchMyOrder,
+				editProduct,
 			}}
 		>
 			{children}

@@ -38,7 +38,8 @@ export default function ProductAdd() {
 			}
 			setLoading(true);
 			await createProduct(formData);
-			setFatchOrder(fatchOrder);
+			alert("CREATED PRODUCT");
+			// setFatchOrder(fatchOrder);
 		} catch (err) {
 			console.log(err);
 		} finally {
@@ -168,7 +169,6 @@ export default function ProductAdd() {
 				</div>
 
 				<button
-					to={`/admin/products`}
 					type="submit"
 					className="bg-purple-600 text-white w-full  mx-auto px-4 py-2 rounded-lg shadow-lg my-4 
                     hover:bg-purple-400 hover:text-slate-800 font-semibold text-xl cursor-pointer"

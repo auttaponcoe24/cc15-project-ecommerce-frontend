@@ -15,7 +15,11 @@ export default function Products() {
 					</button>
 				</Link>
 
-				<div className="bg-white p-2 rounded-md">PRODUCT NAME</div>
+				<div className="bg-white p-2 rounded-md flex items-center justify-between">
+					<div>PRODUCT NAME</div>
+					<div>PRICE</div>
+					<div className="mr-[500px]">CATEGORY NAME</div>
+				</div>
 				<hr />
 
 				<ProductList data={getProduct} />

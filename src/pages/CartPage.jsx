@@ -31,6 +31,7 @@ export default function CartPage() {
 		}
 	};
 
+	// console.log("cartUser", cartUser.length);
 	return (
 		<>
 			<div className="max-w-4xl mx-auto my-4 flex flex-col justify-center">
@@ -54,22 +55,29 @@ export default function CartPage() {
 					</div>
 				</div>
 				<hr className="my-2 border w-full" />
-				<div
-					onClick={deleteCartAll}
-					className="flex items-center justify-center gap-2 hover:cursor-pointer hover:text-red-500 mb-4"
-				>
-					<BsTrash size={20} /> <span>Cancel All Products</span>
-				</div>
-				<div className="mx-auto">
-					<Link to={urlPathConfirmorder}>
-						<Button
-							style="bg-blue-500 text-white px-6 py-2"
-							onClick={handleClikeCheckout}
+				{cartUser.length === 0 ? (
+					<></>
+				) : (
+					<>
+						<div
+							onClick={deleteCartAll}
+							className="flex items-center self-center justify-center gap-2 hover:cursor-pointer hover:text-red-500 mb-4"
 						>
-							Checkout
-						</Button>
-					</Link>
-				</div>
+							<BsTrash size={20} />
+							<span>Cancel All Products</span>
+						</div>
+						<div className="mx-auto">
+							<Link to={urlPathConfirmorder}>
+								<Button
+									style="bg-blue-500 text-white px-6 py-2"
+									onClick={handleClikeCheckout}
+								>
+									Checkout
+								</Button>
+							</Link>
+						</div>
+					</>
+				)}
 			</div>
 		</>
 	);

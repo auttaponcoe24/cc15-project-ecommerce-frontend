@@ -19,6 +19,7 @@ import LayoutAdmin from "../layout/LayoutAdmin";
 import ProductAdd from "../features/admin/ProductAdd";
 import MyAccountPage from "../pages/MyAccountPage";
 import AccountSetting from "../features/auth/AccountSetting";
+import MyOrder from "../features/auth/MyOrder";
 
 const router = createBrowserRouter([
 	{
@@ -43,6 +44,14 @@ const router = createBrowserRouter([
 				element: (
 					<Authenticated>
 						<OrderPage />
+					</Authenticated>
+				),
+			},
+			{
+				path: "/myorder",
+				element: (
+					<Authenticated>
+						<MyOrder />
 					</Authenticated>
 				),
 			},

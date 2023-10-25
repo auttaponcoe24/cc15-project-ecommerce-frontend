@@ -16,6 +16,8 @@ export default function OrdersItem({
 
 	const handleClick = (id) => {
 		panddingChangeSuccess(id);
+		alert("approved");
+		window.location.reload();
 	};
 
 	return (
@@ -50,7 +52,7 @@ export default function OrdersItem({
 					) : (
 						<>
 							<button
-								className="text-red-600"
+								className="text-red-600 hover:bg-purple-400 px-4 py-2 rounded-md hover:text-white"
 								onClick={() => handleClick(id)}
 							>
 								{status}

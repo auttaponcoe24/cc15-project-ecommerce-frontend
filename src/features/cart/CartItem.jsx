@@ -11,7 +11,7 @@ export default function CartItem({
 	cartObj,
 	amount,
 }) {
-	const { changeAmount, cart, setCart } = useProduct();
+	const { changeAmount, sumTotalProduct, setSumTotalProduct } = useProduct();
 	const [current, setCurrent] = useState(amount);
 	const [sumProduct, setSumProduct] = useState(price * amount);
 
@@ -23,6 +23,8 @@ export default function CartItem({
 			// const change = { ...cart };
 			// console.log("change", { change, amount: current + 1 });
 			await changeAmount(cartId, { amount: current + 1 });
+			window.location.reload();
+			// setSumTotalProduct();
 		} catch (err) {
 			console.log(err);
 		}
@@ -32,6 +34,7 @@ export default function CartItem({
 		setCurrent(current - 1);
 		setSumProduct(price * (current - 1));
 		await changeAmount(cartId, { amount: current - 1 });
+		window.location.reload();
 	};
 
 	const handleClickDelete = () => {

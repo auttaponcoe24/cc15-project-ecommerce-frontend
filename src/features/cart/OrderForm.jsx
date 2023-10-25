@@ -14,7 +14,7 @@ export default function OrderForm({
 	deleteCartAll,
 }) {
 	// setStatusOrder
-	const { statusOrder, setStatusOrder } = useProduct();
+	const { statusOrder, fatchMyOrder } = useProduct();
 	const [isOpen, setIsOpen] = useState(false);
 	const [file, setFile] = useState(null);
 	const [loading, setLoading] = useState(false);

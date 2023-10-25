@@ -24,6 +24,12 @@ const menuAdmin = [
 		text: "Products",
 		icon: <HiOutlineArchiveBox />,
 	},
+	{
+		id: 4,
+		to: "/",
+		text: "HOME",
+		// icon: <HiOutlineArchiveBox />,
+	},
 ];
 
 export default function Menu() {

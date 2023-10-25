@@ -38,9 +38,11 @@ export default function Dropdown() {
 								My Profile
 							</div>
 						</Link>
-						<div className="cursor-pointer hover:text-red-500">
-							Orders
-						</div>
+						<Link to="/myorder">
+							<div className="cursor-pointer hover:text-red-500">
+								Orders
+							</div>
+						</Link>
 					</div>
 
 					<hr className="m-2 border" />

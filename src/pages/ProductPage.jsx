@@ -10,7 +10,7 @@ export default function ProductPage() {
 	const { cart, setCart, getCartItems, setNumOrder, numOrder } = useProduct();
 
 	const { productId } = useParams();
-	const [productUser, setProductUser] = useState({});
+	const [productUser, setProductUser] = useState("");
 
 	useEffect(() => {
 		axios
@@ -38,6 +38,8 @@ export default function ProductPage() {
 			}
 		}
 	};
+
+	console.log("prodcutUser", productUser);
 
 	return (
 		<>
@@ -72,7 +74,7 @@ export default function ProductPage() {
 								<div>
 									<span>amount : </span>
 									<input
-										type="text"
+										type="number"
 										onChange={(e) =>
 											setCart({
 												...cart,
