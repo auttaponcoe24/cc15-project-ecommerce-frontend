@@ -43,13 +43,13 @@ export default function ProductPage() {
 
 	return (
 		<>
-			<div className="max-w-4xl mx-auto flex flex-col my-4 p-4">
+			<div className="max-w-4xl mx-auto flex flex-col my-4 mb-10 p-4 h-screen">
 				{productUser ? (
 					<>
 						<div className="my-4">
 							home / product / <span>{productUser.name}</span>
 						</div>
-						<div className="flex items-center justify-center gap-4">
+						<div className="flex flex-col md:flex-row items-center justify-center gap-4">
 							<div className="w-[300px] h-[300px] border shadow-lg mr-4">
 								<img
 									src={productUser.images}
@@ -65,7 +65,7 @@ export default function ProductPage() {
 								<div>rating</div>
 								<div>Detail</div>
 								<hr className="border w-full" />
-								<div>
+								<div className="flex gap-4 md:flex-row">
 									<div>price :</div>
 									<span className="text-4xl font-mono text-red-500 font-semibold">
 										{productUser.price}

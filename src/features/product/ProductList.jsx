@@ -3,9 +3,9 @@ import ProductItem from "./ProductItem";
 
 export default function ProductList({ data }) {
 	return (
-		<div className="grid grid-cols-3 gap-4">
+		<div className="grid grid-cols-1 p-10 md:grid-cols-2 lg:grid-cols-3 gap-4">
 			{data.map((item, index) => (
-				<div key={index}>
+				<div key={index} className="">
 					<ProductItem
 						id={item.id}
 						name={item.name}

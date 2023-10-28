@@ -43,13 +43,13 @@ export default function CartItem({
 
 	return (
 		<>
-			<div className="flex items-center justify-between mx-auto w-[600px] border p-4">
+			<div className="flex flex-col md:flex-row  gap-4 items-center justify-between border p-4">
 				<div className="w-[150px] h-[150px] border mr-6 shadow-lg">
 					<img src={images} alt={name} />
 				</div>
 
-				<div className="flex flex-col flex-1 gap-4">
-					<div className="flex items-center justify-between ">
+				<div className="w-full p-4 flex flex-col flex-1 gap-4">
+					<div className=" flex items-center justify-between ">
 						<span className="text-xl font-semibold">{name}</span>
 						<BsTrash
 							onClick={handleClickDelete}
@@ -70,7 +70,7 @@ export default function CartItem({
 						</div>
 					</div>
 
-					<div className="flex self-start items-center justify-start gap-4 border  rounded-lg border-gray-400 ">
+					<div className="flex self-center md:self-start items-center justify-start gap-4 border  rounded-lg border-gray-400 ">
 						<button
 							onClick={handleClickDecrease}
 							className=" border border-collapse rounded-lg text-xl px-4 bg-red-700 text-white hover:text-red-500 outline-none"

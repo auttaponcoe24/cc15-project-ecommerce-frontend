@@ -1,8 +1,8 @@
 export default function Footer() {
 	return (
-		<div className="flex flex-col bg-red-500">
+		<div className="flex flex-col bg-red-500 py-2">
 			<ul className="flex justify-evenly mb-2">
-				<li>Logo</li>
+				<li>LOGO</li>
 				<li>ABOUT US</li>
 				<li>CONTACT US</li>
 				<li>SOCIAL</li>

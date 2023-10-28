@@ -4,21 +4,24 @@ import { useAuth } from "../hooks/use-auth";
 import Dropdown from "./Dropdown";
 import { BsCart } from "react-icons/bs";
 import { useProduct } from "../hooks/use-product";
+import Sidenav from "../components/Sidenav";
 
 export default function Header() {
 	const { authUser } = useAuth();
 	const { numOrder } = useProduct();
 	return (
-		<header className="grid grid-cols-4 px-4 bg-gray-500 shadow-lg sticky top-0 z-30">
+		<header className="grid grid-cols-2 md:grid-cols-4 px-4 py-2 bg-gray-500 shadow-lg sticky top-0 z-30">
 			{/* Logo */}
 			<div className="py-2 justify-self-start self-center text-white">
-				<Link to="/">
+				<Link to="/" className="hidden md:block">
 					<h1>Logo</h1>
 				</Link>
+
+				<Sidenav />
 			</div>
 
 			{/* NavMenu */}
-			<div className="self-center col-span-2 ">
+			<div className="hidden md:block self-center col-span-2 ">
 				<Menu />
 			</div>
 

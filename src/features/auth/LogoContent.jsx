@@ -2,7 +2,7 @@ import React from "react";
 import logoimage from "../../assets/image/logo.png";
 export default function LogoContent() {
 	return (
-		<div className="w-[500px] h-[350px]">
+		<div className="hidden md:block w-[350px] h-[350px]">
 			<img
 				src={logoimage}
 				alt=""

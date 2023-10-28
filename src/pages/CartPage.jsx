@@ -25,7 +25,7 @@ export default function CartPage() {
 				statusOrder
 			);
 			setNumOrderId(data.createOrder.id);
-			console.log("orderId", data);
+			// console.log("orderId", data);
 		} catch (err) {
 			console.log(err);
 		}
@@ -34,19 +34,24 @@ export default function CartPage() {
 	// console.log("cartUser", cartUser.length);
 	return (
 		<>
-			<div className="max-w-4xl mx-auto my-4 flex flex-col justify-center">
+			<div className="mx-auto my-4 flex flex-col justify-center">
 				<h1 className="text-5xl font-bold my-2 text-center">CART</h1>
 				<hr className="my-2 border w-full" />
 				<p className="font-semibold ml-4">PRODUCTS</p>
 				<hr className="my-2 border w-full" />
-				<div className="flex justify-evenly gap-4">
-					<CartList cartUser={cartUser} deleteCart={deleteCart} />
+				<div className="flex flex-col md:flex-row justify-between gap-4">
+					{cartUser.length === 0 ? (
+						<div className="hidden"></div>
+					) : (
+						<CartList cartUser={cartUser} deleteCart={deleteCart} />
+					)}
+
 					{/* All Sum product in cart */}
-					<div className="flex flex-col flex-1 items-center self-start border p-4">
-						<div className="font-semibold text-xl">
+					<div className="flex flex-col mx-auto  items-center justify-center self-center md:self-start md:w-[320px] md:mt-4 border px-2 py-4 ">
+						<div className="font-semibold text-xl ">
 							All SUM PRODUCT
 						</div>
-						<div className="flex gap-2">
+						<div className="flex  gap-2">
 							<span className="text-red-500">
 								...{sumTotalProduct}...
 							</span>

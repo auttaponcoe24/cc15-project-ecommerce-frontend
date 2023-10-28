@@ -10,7 +10,8 @@ import { useAuth } from "../../hooks/use-auth";
 export default function ProductItem({ id, name, price, image }) {
 	const [isOpen, setIsOpen] = useState(false);
 
-	const { cart, setCart, setCartUser, setNumOrder, numOrder } = useProduct();
+	const { cart, setCart, setCartUser, setNumOrder, numOrder, getCartItems } =
+		useProduct();
 	const { authUser } = useAuth();
 
 	const handleClickAddProductMyCart = async (cart) => {
@@ -23,6 +24,7 @@ export default function ProductItem({ id, name, price, image }) {
 				return [res.data.addCart];
 			});
 			setNumOrder(numOrder + 1);
+			getCartItems();
 
 			setIsOpen(true);
 		} catch (err) {
@@ -31,9 +33,11 @@ export default function ProductItem({ id, name, price, image }) {
 	};
 
 	return (
-		<div className="flex flex-col items-center gap-1 border shadow-md pb-4 rounded-lg">
+		<div className="flex flex-col w-[300px] items-center gap-1 border shadow-md pb-4 rounded-lg ">
 			<Link to={`/product/${id}`}>
-				<img src={image} alt={name} />
+				<div className="w-[200px] h-[200px]  mx-4 my-2">
+					<img src={image} alt={name} className="w-full h-full" />
+				</div>
 			</Link>
 			<hr className="border w-[90%]" />
 			<div className="font-semibold text-xl">{name}</div>

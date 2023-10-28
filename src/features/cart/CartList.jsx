@@ -4,7 +4,7 @@ export default function CartList({ cartUser, deleteCart }) {
 	// console.log("heool", cartUser);
 
 	return (
-		<div className="flex flex-col gap-4 items-center justify-start ">
+		<div className="p-4 md:w-full">
 			{cartUser.map((item, index) => (
 				<div key={index}>
 					<CartItem
