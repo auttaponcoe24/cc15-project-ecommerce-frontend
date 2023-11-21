@@ -6,6 +6,7 @@ import { useProduct } from "../../hooks/use-product";
 import FormButton from "./FormButton";
 import Model from "../../components/Model";
 import Button from "./Button";
+import Swal from "sweetalert2";
 
 export default function OrderForm({
 	changeStatusUploadSlip,
@@ -33,11 +34,18 @@ export default function OrderForm({
 
 			createOrderItem(numOrderId);
 			deleteCartAll();
-			setIsOpen(true);
 		} catch (err) {
 			console.log(err);
 		} finally {
 			setLoading(false);
+			Swal.fire({
+				position: "center",
+				icon: "success",
+				title: "Orders Success",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			setIsOpen(true);
 		}
 	};
 

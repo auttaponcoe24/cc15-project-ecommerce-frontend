@@ -39,7 +39,7 @@ export default function ProductItem({ id, name, price, image }) {
 					<img src={image} alt={name} className="w-full h-full" />
 				</div>
 			</Link>
-			<hr className="border w-[90%]" />
+			<hr className="border w-[80%]" />
 			<div className="font-semibold text-xl">{name}</div>
 			<h1 className="text-red-400 font-mono font-semibold text-2xl">
 				{price}

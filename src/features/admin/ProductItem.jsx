@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useProduct } from "../../hooks/use-product";
+import { toast } from "react-toastify";
 
 export default function ProductItem({
 	name,
@@ -9,6 +10,11 @@ export default function ProductItem({
 	open,
 }) {
 	const { deleteProduct, editProduct, setIsOpen } = useProduct();
+
+	const handleDeleteProduct = () => {
+		deleteProduct(productId);
+		// toast.warning("Delete Product");
+	};
 
 	return (
 		<div className="flex items-center justify-between">
@@ -26,7 +32,7 @@ export default function ProductItem({
 				</button> */}
 
 				<button
-					onClick={() => deleteProduct(productId)}
+					onClick={handleDeleteProduct}
 					className="border rounded-md shadow-md bg-red-400 text-white px-4 py-2 hover:bg-red-600"
 				>
 					Delete

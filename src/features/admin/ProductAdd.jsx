@@ -2,13 +2,15 @@ import React, { useRef, useState } from "react";
 import { useProduct } from "../../hooks/use-product";
 import Loading from "../../components/Loading";
 import picblank from "../../assets/image/blankImage.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function ProductAdd() {
 	const { fatchCategory, createProduct, fatchOrder, setFatchOrder } =
 		useProduct();
 	console.log(fatchCategory);
 
+	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 
 	const [input, setInput] = useState({
@@ -38,12 +40,15 @@ export default function ProductAdd() {
 			}
 			setLoading(true);
 			await createProduct(formData);
-			alert("CREATED PRODUCT");
+			// alert("CREATED PRODUCT");
 			// setFatchOrder(fatchOrder);
 		} catch (err) {
 			console.log(err);
 		} finally {
 			setLoading(false);
+			navigate(`/admin/products`);
+			window.location.reload();
+			// toast.success(`CREATED PRODUCT`);
 		}
 	};
 

@@ -6,7 +6,7 @@ export default function AccountSetting() {
 	const { authUser } = useAuth();
 	return (
 		<div className="grid grid-cols-12 ">
-			<div className="col-span-3">2</div>
+			<div className="col-span-3"></div>
 			<div className="col-span-9 h-[87vh] flex justify-evenly items-center max-md:flex-col gap-6 p-4">
 				<div className="border px-4 py-2 rounded-md bg-slate-100 ">
 					<div className="flex flex-col gap-4 w-full">

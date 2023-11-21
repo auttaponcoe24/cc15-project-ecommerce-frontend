@@ -6,7 +6,7 @@ export default function MyAccountPage() {
 	// console.log(authUser);
 	return (
 		<div className="grid grid-cols-12 ">
-			<div className="col-span-3">2</div>
+			<div className="col-span-3"></div>
 			<div className="col-span-9">
 				<div className="h-[86vh] flex justify-start items-center ml-4">
 					<div className="flex flex-col gap-4 w-full">

@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { useAuth } from "../../hooks/use-auth";
+import Loading from "../../components/Loading";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 export default function EditAccount() {
-	const { editAccount } = useAuth();
+	const { editAccount, authUser } = useAuth();
+	console.log(authUser);
+
+	const [loading, setLoading] = useState(false);
+
 	const [input, setInput] = useState({
 		firstName: "",
 		lastName: "",
@@ -12,14 +19,35 @@ export default function EditAccount() {
 	const handleOnSubmit = (e) => {
 		try {
 			e.preventDefault();
+			if (input.firstName === "") {
+				input.firstName = authUser.firstName;
+			}
+			if (input.lastName === "") {
+				input.lastName = authUser.lastName;
+			}
+			if (input.address === "") {
+				input.address = authUser.address;
+			}
+			setLoading(true);
 			editAccount(input);
-			alert("Edit Success");
+			// alert("Edit Success");
 		} catch (err) {
 			console.log(err);
+		} finally {
+			setLoading(false);
+			// toast.success("Edit Access Success");
+			Swal.fire({
+				position: "center",
+				icon: "success",
+				title: "Edit Access Success",
+				showConfirmButton: false,
+				timer: 1500,
+			});
 		}
 	};
 	return (
 		<>
+			{loading && <Loading />}
 			<form
 				onSubmit={handleOnSubmit}
 				className="border flex flex-col gap-4 p-6 rounded-lg shadow-md"
@@ -39,6 +67,7 @@ export default function EditAccount() {
 								[e.target.name]: e.target.value,
 							})
 						}
+						placeholder={authUser.firstName}
 					/>
 				</div>
 				<div className="flex flex-col gap-2 items-center">
@@ -56,6 +85,7 @@ export default function EditAccount() {
 								[e.target.name]: e.target.value,
 							})
 						}
+						placeholder={authUser.lastName}
 					/>
 				</div>
 				<div className="flex flex-col gap-2 items-center">
@@ -72,6 +102,7 @@ export default function EditAccount() {
 								[e.target.name]: e.target.value,
 							})
 						}
+						placeholder={authUser.address}
 						id=""
 						cols="50"
 					></textarea>

@@ -160,10 +160,9 @@ function ProductContextProvider({ children }) {
 		try {
 			const res = await axios.post(`/product/categoryId`, formData);
 			console.log("createProduct", res);
-			if (res.status === 201) {
-				window.location.reload();
-				// fatchProduct()
-			}
+			// if (res.status === 201) {
+			// 	window.location.reload();
+			// }
 			// setGetProduct(res.data);
 		} catch (err) {
 			console.log(err);

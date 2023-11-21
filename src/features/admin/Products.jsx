@@ -9,8 +9,8 @@ export default function Products() {
 	return (
 		<div className="">
 			<div className="flex flex-col m-4 gap-2">
-				<Link to="/admin/products/add">
-					<button className="self-start rounded-md text-white py-2 px-2 t bg-purple-500">
+				<Link to="/admin/products/add" className="self-start">
+					<button className="rounded-md text-white py-2 px-2 t bg-purple-500">
 						Add new product
 					</button>
 				</Link>
