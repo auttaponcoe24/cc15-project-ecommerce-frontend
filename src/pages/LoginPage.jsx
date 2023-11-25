@@ -9,7 +9,8 @@ export default function LoginPage() {
 				{/* Logo */}
 				<LogoContent />
 				<div className="mt-10 self-stretch lg:self-center min-[900px]:mt-0 min-[900px]:basis-[24.75rem]">
-					<div className="mx-auto max-w-[24.75rem] bg-white rounded-lg shadow-[0_0_15px_rgb(0_0_0_/0.2)] mb-6 p-4">
+					{/* <div className="mx-auto max-w-[24.75rem] bg-white rounded-lg shadow-[0_0_15px_rgb(0_0_0_/0.2)] mb-6 p-4"> */}
+					<div className="mx-auto max-w-[24.75rem] bg-white rounded-lg shadow-[0_0_15px_rgb(0_0_0_/0.2)] mb-6 py-4 px-10">
 						<LoginForm />
 						<hr className="border-gray-400 my-4" />
 

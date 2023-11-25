@@ -66,7 +66,7 @@ export default function RegisterForm() {
 	};
 
 	return (
-		<form className="grid gap-4" onSubmit={handleOnSubmit}>
+		<form className="grid gap-2" onSubmit={handleOnSubmit}>
 			<h1 className="text-xl font-semibold">Sign Up</h1>
 			<div>
 				<h2 className="mb-2">Email / Username</h2>

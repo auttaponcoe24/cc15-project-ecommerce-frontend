@@ -3,15 +3,16 @@ import { useProduct } from "../../hooks/use-product";
 import MyOrderItem from "./MyOrderItem";
 
 export default function MyOrder() {
-	const { fatchMyOrder } = useProduct();
+	const { fetchMyOrder, myOrder } = useProduct();
 
-	// useEffect(() => {
-	// 	// fatchMyOrder;
-	// }, [fatchMyOrder]);
+	useEffect(() => {
+		fetchMyOrder();
+	}, []);
+
 	return (
 		<div className="flex flex-col gap-4 items-center justify-start min-h-[680px]">
 			<h1 className="text-2xl font-semibold">...My Orders...</h1>
-			{fatchMyOrder.map((item, index) => (
+			{myOrder.map((item, index) => (
 				<div key={index}>
 					<MyOrderItem
 						// order={}

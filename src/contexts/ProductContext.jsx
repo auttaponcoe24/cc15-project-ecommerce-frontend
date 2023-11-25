@@ -6,30 +6,17 @@ import { getAccessToken } from "../utils/local-storage";
 export const ProductContext = createContext();
 
 function ProductContextProvider({ children }) {
-	const [loading, setLoading] = useState(true);
-	// const { getAccessToken } = useAuth();
 	const [cart, setCart] = useState({ amount: 1 });
-
-	// render data=productAll
 	const [getProduct, setGetProduct] = useState([]);
-
-	// render data=product in cart
 	const [cartUser, setCartUser] = useState([]);
-
 	const [sumTotalProduct, setSumTotalProduct] = useState(0);
-
 	const [statusOrder, setStatusOrder] = useState({
 		status: "INCART",
 	});
-
 	const [numOrderId, setNumOrderId] = useState(0);
-
-	const [fatchOrder, setFatchOrder] = useState([]);
-
+	const [getOrder, setGetOrder] = useState([]);
 	const [fatchCategory, setFatchCategory] = useState([]);
-
-	const [fatchMyOrder, setFatchMyOrder] = useState([]);
-
+	const [myOrder, setMyOrder] = useState([]);
 	const [numOrder, setNumOrder] = useState(0);
 
 	const getCartItems = () => {
@@ -43,18 +30,14 @@ function ProductContextProvider({ children }) {
 			.catch((err) => console.log(err));
 	};
 
-	useEffect(() => {
-		const fatchProduct = async () => {
-			try {
-				const { data } = await axios.get("/product/all");
-				// console.log(data.productAll);
-				setGetProduct(data.productAll);
-			} catch (err) {
-				console.log(err);
-			}
-		};
-		fatchProduct();
-	}, []);
+	const fetchProduct = async () => {
+		try {
+			const { data } = await axios.get("/product/all");
+			setGetProduct(data.productAll);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	useEffect(() => {
 		if (getAccessToken()) {
@@ -97,37 +80,44 @@ function ProductContextProvider({ children }) {
 		await axios.patch(`cart/mycart/${cartId}/amount`, update);
 	};
 
-	useEffect(() => {
-		const fatchMyOrder = async () => {
-			try {
-				const res = await axios.get("/order/myorder");
-				console.log("fatchMyOrder2", res);
-				setFatchMyOrder(res.data.myOrder);
-				// if (res.status === 200) {
-				// 	window.location.reload();
-				// }
-			} catch (err) {
-				console.log(err);
-			}
-		};
-		fatchMyOrder();
-	}, []);
+	const fetchMyOrder = async () => {
+		try {
+			const res = await axios.get("/order/myorder");
+			setMyOrder(res.data.myOrder);
+			// if (res.status === 200) {
+			// 	window.location.reload();
+			// }
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	// admin
 
-	useEffect(() => {
-		const fatchOrder = async () => {
-			try {
-				const res = await axios.get(`/order/orderitem`);
-				console.log(res);
+	// useEffect(() => {
+	// 	const fatchOrder = async () => {
+	// 		try {
+	// 			const res = await axios.get(`/order/orderitem`);
+	// 			console.log(res);
 
-				setFatchOrder(res.data.order);
-			} catch (err) {
-				console.log(err);
-			}
-		};
-		fatchOrder();
-	}, []);
+	// 			setFatchOrder(res.data.order);
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 		}
+	// 	};
+	// 	fatchOrder();
+	// }, []);
+
+	const fetchOrder = async () => {
+		try {
+			const res = await axios.get(`/order/orderitem`);
+			console.log(res);
+
+			setGetOrder(res.data.order);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	useEffect(() => {
 		const fatchCategory = async () => {
@@ -150,7 +140,6 @@ function ProductContextProvider({ children }) {
 			// if (res.status === 200) {
 			// 	window.location.reload();
 			// }
-			setFatchOrder(res.data);
 		} catch (err) {
 			console.log(err);
 		}
@@ -189,6 +178,7 @@ function ProductContextProvider({ children }) {
 	return (
 		<ProductContext.Provider
 			value={{
+				fetchProduct,
 				getProduct,
 				cart,
 				setCart,
@@ -204,7 +194,6 @@ function ProductContextProvider({ children }) {
 				createOrderItem,
 				numOrderId,
 				setNumOrderId,
-				fatchOrder,
 				panddingChangeSuccess,
 				fatchCategory,
 				createProduct,
@@ -212,8 +201,11 @@ function ProductContextProvider({ children }) {
 				setNumOrder,
 				deleteProduct,
 				changeAmount,
-				fatchMyOrder,
+				fetchMyOrder,
+				myOrder,
 				editProduct,
+				fetchOrder,
+				getOrder,
 			}}
 		>
 			{children}

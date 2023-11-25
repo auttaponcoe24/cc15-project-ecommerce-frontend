@@ -35,7 +35,7 @@ function Sidenav() {
 			)}
 
 			{nav && (
-				<div className="md:hidden fixed w-full left-0 top-0 h-screen bg-slate-700/90 flex flex-col justify-center items-center z-20">
+				<div className="md:hidden fixed w-full left-0 top-0 h-screen bg-blue-gray-800/80 flex flex-col justify-center items-center z-20">
 					<Link
 						onClick={handleNav}
 						to="/"

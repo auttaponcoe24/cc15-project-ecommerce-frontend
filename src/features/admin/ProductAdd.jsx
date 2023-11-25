@@ -6,8 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function ProductAdd() {
-	const { fatchCategory, createProduct, fatchOrder, setFatchOrder } =
-		useProduct();
+	const { fatchCategory, createProduct } = useProduct();
 	console.log(fatchCategory);
 
 	const navigate = useNavigate();
@@ -41,7 +40,6 @@ export default function ProductAdd() {
 			setLoading(true);
 			await createProduct(formData);
 			// alert("CREATED PRODUCT");
-			// setFatchOrder(fatchOrder);
 		} catch (err) {
 			console.log(err);
 		} finally {

@@ -33,7 +33,7 @@ export default function AuthContextProvider({ children }) {
 		addAccessToken(res.data.accessToken);
 		setAuthUser(res.data.user);
 		// console.log(res.data.user);
-		window.location.reload();
+		// window.location.reload();
 	};
 
 	const register = async (registerInput) => {
@@ -45,7 +45,7 @@ export default function AuthContextProvider({ children }) {
 	const logout = () => {
 		removeAccessToken();
 		setAuthUser(null);
-		window.location.reload();
+		// window.location.reload();
 	};
 
 	const editAccount = async (data) => {
