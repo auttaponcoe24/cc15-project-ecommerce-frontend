@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../hooks/use-auth";
 import Button from "./Button";
-import RegisterInput from "./RegisterInput";
 import Joi from "joi";
 import Input from "../../components/Input";
 import InputErrorMessage from "./InputErrorMessage";
