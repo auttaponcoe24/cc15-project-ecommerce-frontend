@@ -3,6 +3,7 @@ import { useAuth } from "../../hooks/use-auth";
 import Button from "./Button";
 import RegisterInput from "./RegisterInput";
 import Joi from "joi";
+import Input from "../../components/Input";
 import InputErrorMessage from "./InputErrorMessage";
 
 const registerSchema = Joi.object({
@@ -66,11 +67,11 @@ export default function RegisterForm() {
 	};
 
 	return (
-		<form className="grid gap-2" onSubmit={handleOnSubmit}>
-			<h1 className="text-xl font-semibold">Sign Up</h1>
+		<form className="flex flex-col gap-4" onSubmit={handleOnSubmit}>
+			<h1 className="text-xl font-semibold text-center">Sign Up</h1>
 			<div>
-				<h2 className="mb-2">Email / Username</h2>
-				<RegisterInput
+				<Input
+					label={`Email / Username`}
 					value={input.emailOrUsername}
 					onChange={handleChangeInput}
 					name="emailOrUsername"
@@ -82,68 +83,63 @@ export default function RegisterForm() {
 			)}
 
 			<div>
-				<h2 className="mb-2">Password</h2>
-				<div>
-					<RegisterInput
-						type="password"
-						value={input.password}
-						onChange={handleChangeInput}
-						name="password"
-						hasError={error.password}
-					/>
-				</div>
+				<Input
+					label={`Password`}
+					type="password"
+					value={input.password}
+					onChange={handleChangeInput}
+					name="password"
+					hasError={error.password}
+				/>
 			</div>
+
 			{error.password && <InputErrorMessage message={error.password} />}
 
 			<div>
-				<h2 className="mb-2">Comfirm Password</h2>
-				<div>
-					<RegisterInput
-						type="password"
-						onChange={handleChangeInput}
-						name="confirmPassword"
-						hasError={error.confirmPassword}
-					/>
-				</div>
+				<Input
+					label={`Confirm Password`}
+					type="password"
+					onChange={handleChangeInput}
+					name="confirmPassword"
+					hasError={error.confirmPassword}
+				/>
 			</div>
+
 			{error.confirmPassword && (
 				<InputErrorMessage message={error.confirmPassword} />
 			)}
 
 			<div>
-				<h2 className="mb-2">First Name</h2>
-				<div>
-					<RegisterInput
-						onChange={handleChangeInput}
-						name="firstName"
-						hasError={error.firstName}
-					/>
-				</div>
+				<Input
+					label={`First Name`}
+					onChange={handleChangeInput}
+					name="firstName"
+					hasError={error.firstName}
+				/>
 			</div>
+
 			{error.firstName && <InputErrorMessage message={error.firstName} />}
 
 			<div>
-				<h2 className="mb-2">Last Name</h2>
-				<div>
-					<RegisterInput
-						onChange={handleChangeInput}
-						name="lastName"
-						hasError={error.lastName}
-					/>
-				</div>
+				<Input
+					label={`Last Name`}
+					onChange={handleChangeInput}
+					name="lastName"
+					hasError={error.lastName}
+				/>
 			</div>
+
 			{error.lastName && <InputErrorMessage message={error.lastName} />}
 
 			<div>
-				<h2 className="mb-2">Address</h2>
-				<div>
-					<RegisterInput
-						onChange={handleChangeInput}
-						name="address"
-						hasError={error.address}
-					/>
-				</div>
+				<Input
+					label={`Address`}
+					onChange={handleChangeInput}
+					name="address"
+					hasError={error.address}
+				/>
 			</div>
+
 			{error.address && <InputErrorMessage message={error.address} />}
 
 			<Button text="Sign Up" style="bg-blue-500 text-white" />

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import CarouselImage from "../components/CarouselImage";
 import Carousel from "../components/Carousel";
 import ProductList from "../features/product/ProductList";
 import { useProduct } from "../hooks/use-product";
@@ -14,7 +13,6 @@ export default function HomePage() {
 	return (
 		<div className="flex flex-col justify-center items-center">
 			<div className="max-w-[1024px] my-2">
-				{/* <CarouselImage /> */}
 				<Carousel />
 			</div>
 			{/* product */}

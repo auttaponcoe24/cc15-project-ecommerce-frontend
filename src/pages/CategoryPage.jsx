@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductList from "../features/product/ProductList";
 import { useProduct } from "../hooks/use-product";
 
 export default function Category() {
-	const { getProduct } = useProduct();
+	const { getProduct, fetchProduct } = useProduct();
+
+	useEffect(() => {
+		fetchProduct();
+	}, []);
 	return (
 		<>
 			<div className="max-w-4xl mx-auto my-4 flex flex-col items-center">

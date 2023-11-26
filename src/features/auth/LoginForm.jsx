@@ -1,8 +1,7 @@
-import LoginInput from "./LoginInput";
 import Button from "./Button";
 import { useState } from "react";
 import { useAuth } from "../../hooks/use-auth";
-
+import Input from "../../components/Input";
 import { loginSchema } from "../../validators/auth-validator";
 import InputErrorMessage from "./InputErrorMessage";
 
@@ -47,13 +46,13 @@ export default function LoginForm() {
 	return (
 		<>
 			<form onSubmit={handleSubmitForm}>
-				<h1 className="text-xl font-semibold">LOGIN</h1>
-				<div className="grid gap-4 mt-4">
+				<h1 className="text-xl text-center font-semibold">LOGIN</h1>
+				<div className="flex flex-col gap-4 mt-4">
 					<div>
-						<h2 className="mb-2">Email / Username</h2>
 						<div>
-							<LoginInput
+							<Input
 								value={input.emailOrUsername}
+								label={`Email / Username`}
 								onChange={(e) =>
 									setInput({
 										...input,
@@ -70,10 +69,10 @@ export default function LoginForm() {
 						</div>
 					</div>
 					<div>
-						<h2 className="mb-2">Password</h2>
 						<div>
-							<LoginInput
+							<Input
 								type="password"
+								label={`Password`}
 								value={input.password}
 								onChange={(e) =>
 									setInput({
@@ -85,11 +84,6 @@ export default function LoginForm() {
 							/>
 							{error.password && (
 								<InputErrorMessage message={error.password} />
-							)}
-							{error.messageError && (
-								<InputErrorMessage
-									message={error.messageError}
-								/>
 							)}
 						</div>
 					</div>
