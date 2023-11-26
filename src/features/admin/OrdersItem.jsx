@@ -22,6 +22,7 @@ export default function OrdersItem({
 		try {
 			setLoading(true);
 			panddingChangeSuccess(id);
+			fetchOrder();
 		} catch (err) {
 			console.log(err);
 		} finally {
@@ -41,37 +42,38 @@ export default function OrdersItem({
 	return (
 		<>
 			{loading && <Loading />}
-			<div className="grid grid-cols-6 justify-items-center text-xl py-2 px-2 mb-1 rounded-lg shadow-md bg-white">
-				{/* <div>{id}</div> */}
-				<div className="">{date}</div>
-				<div>
+			<div className="grid grid-cols-12  justify-items-center text-lg py-2 px-2 mb-1 rounded-lg shadow-md bg-white">
+				<div className="col-span-2">{date}</div>
+				<div className="col-span-2">
 					<div>{name}</div>
 					<div>{address}</div>
 				</div>
-				<div>
+				<div className="col-span-2">
 					{arrProduct?.map((item, index) => (
 						<div key={index}>{item?.product?.name}</div>
 					))}
 				</div>
-				<div>
+				<div className="col-span-2">
 					{arrAmount?.map((item, index) => (
 						<div key={index}>{item?.amount}</div>
 					))}
 				</div>
-				<div>
+				<div className="col-span-2">
 					{arrPrice?.map((item, index) => (
 						<div key={index}>{item?.price}</div>
 					))}
 				</div>
-				<div>
+				<div className="col-span-2">
 					{status === "SUCCESS" ? (
 						<>
-							<div className="text-green-600">{status}</div>
+							<div className="bg-green-400 text-white py-1 px-2 rounded-lg">
+								{status}
+							</div>
 						</>
 					) : (
 						<>
 							<button
-								className="text-red-600 hover:bg-purple-400 px-4 py-2 rounded-md hover:text-white"
+								className="bg-red-400 text-white hover:bg-red-600 px-2 py-1 rounded-md hover:text-black"
 								// onClick={() => handleClick(id)}
 								onClick={handleChangeStatus}
 							>

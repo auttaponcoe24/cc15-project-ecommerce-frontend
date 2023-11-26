@@ -45,7 +45,7 @@ export default function AuthContextProvider({ children }) {
 	const logout = () => {
 		removeAccessToken();
 		setAuthUser(null);
-		// window.location.reload();
+		window.location.reload();
 	};
 
 	const editAccount = async (data) => {

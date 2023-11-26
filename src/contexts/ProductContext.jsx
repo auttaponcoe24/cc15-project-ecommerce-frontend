@@ -6,7 +6,7 @@ import { getAccessToken } from "../utils/local-storage";
 export const ProductContext = createContext();
 
 function ProductContextProvider({ children }) {
-	const [cart, setCart] = useState({ amount: 1 });
+	// const [cart, setCart] = useState({ amount: 1 });
 	const [getProduct, setGetProduct] = useState([]);
 	const [cartUser, setCartUser] = useState([]);
 	const [sumTotalProduct, setSumTotalProduct] = useState(0);
@@ -19,15 +19,15 @@ function ProductContextProvider({ children }) {
 	const [myOrder, setMyOrder] = useState([]);
 	const [numOrder, setNumOrder] = useState(0);
 
-	const getCartItems = () => {
-		axios
-			.get("/cart")
-			.then((res) => {
-				setCartUser(res.data.cart);
-				setSumTotalProduct(res.data.sumTotalProduct);
-				setNumOrder(res.data.cart.length);
-			})
-			.catch((err) => console.log(err));
+	const getCartItems = async () => {
+		try {
+			const res = await axios.get("/cart");
+			setCartUser(res.data.cart);
+			setSumTotalProduct(res.data.sumTotalProduct);
+			setNumOrder(res.data.cart.length);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	const fetchProduct = async () => {
@@ -38,12 +38,6 @@ function ProductContextProvider({ children }) {
 			console.log(err);
 		}
 	};
-
-	useEffect(() => {
-		if (getAccessToken()) {
-			getCartItems();
-		}
-	}, []);
 
 	const deleteCart = async (cartId) => {
 		try {
@@ -180,8 +174,6 @@ function ProductContextProvider({ children }) {
 			value={{
 				fetchProduct,
 				getProduct,
-				cart,
-				setCart,
 				cartUser,
 				setCartUser,
 				deleteCart,

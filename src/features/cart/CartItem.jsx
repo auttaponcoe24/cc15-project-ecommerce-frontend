@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsTrash } from "react-icons/bs";
 import { useProduct } from "../../hooks/use-product";
 
@@ -11,7 +11,9 @@ export default function CartItem({
 	cartObj,
 	amount,
 }) {
-	const { changeAmount, sumTotalProduct, setSumTotalProduct } = useProduct();
+	const { changeAmount, getCartItems } = useProduct();
+	// console.log("first", amount);
+
 	const [current, setCurrent] = useState(amount);
 	const [sumProduct, setSumProduct] = useState(price * amount);
 
@@ -19,12 +21,8 @@ export default function CartItem({
 		try {
 			setCurrent(current + 1);
 			setSumProduct(price * (current + 1));
-			// console.log(cart);
-			// const change = { ...cart };
-			// console.log("change", { change, amount: current + 1 });
 			await changeAmount(cartId, { amount: current + 1 });
-			window.location.reload();
-			// setSumTotalProduct();
+			getCartItems();
 		} catch (err) {
 			console.log(err);
 		}
@@ -34,7 +32,7 @@ export default function CartItem({
 		setCurrent(current - 1);
 		setSumProduct(price * (current - 1));
 		await changeAmount(cartId, { amount: current - 1 });
-		window.location.reload();
+		getCartItems();
 	};
 
 	const handleClickDelete = () => {
@@ -79,6 +77,7 @@ export default function CartItem({
 							-
 						</button>
 						<div>{current}</div>
+
 						<button
 							onClick={() => handleClickIncrease()}
 							className="border border-collapse rounded-lg text-xl px-4 bg-blue-700 text-white hover:text-red-500 outline-none"

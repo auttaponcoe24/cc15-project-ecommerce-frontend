@@ -13,7 +13,7 @@ export default function CartList({ cartUser, deleteCart }) {
 						name={item.product?.name ?? "test"}
 						images={item.product?.images ?? ""}
 						price={item.product?.price ?? 1000}
-						amount={item.amount}
+						amount={item?.amount}
 						deleteCart={deleteCart}
 					/>
 				</div>

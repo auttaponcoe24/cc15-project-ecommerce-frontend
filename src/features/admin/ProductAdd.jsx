@@ -53,14 +53,14 @@ export default function ProductAdd() {
 	const inputEl = useRef(null);
 
 	return (
-		<div className="flex items-center justify-center h-screen max-w-2xl ">
+		<div className="flex items-center justify-center h-screen max-w-2xl mx-auto">
 			{loading && <Loading />}
 			<form
 				onSubmit={handleOnSubmit}
-				className="flex flex-col gap-4 p-6 rounded-xl shadow-md bg-white w-full"
+				className="flex flex-col gap-4 p-6 rounded-xl shadow-md bg-blue-gray-400 w-full"
 			>
 				<div className="flex flex-col gap-2">
-					<label className="text-xl font-semibold">
+					<label className="text-lg font-semibold text-white">
 						Product Name
 					</label>
 					<input
@@ -77,7 +77,9 @@ export default function ProductAdd() {
 					/>
 				</div>
 				<div className="flex flex-col gap-2">
-					<label className="text-xl font-semibold">Price</label>
+					<label className="text-lg font-semibold text-white">
+						Price
+					</label>
 					<input
 						name="price"
 						className="outline-none px-2 py-2 w-full bg-slate-100 rounded-lg shadow-sm"
@@ -92,7 +94,9 @@ export default function ProductAdd() {
 					/>
 				</div>
 				<div className="flex flex-col gap-2">
-					<label className="text-xl font-semibold">Category</label>
+					<label className="text-lg font-semibold text-white">
+						Category
+					</label>
 					<select
 						name="categoryId"
 						className="bg-slate-100 px-2 py-2 w-full rounded-lg shadow-sm"
@@ -120,7 +124,7 @@ export default function ProductAdd() {
 				<div className="flex flex-col gap-2">
 					<div className="flex flex-col gap-2 items-center justify-evenly">
 						<div
-							className="w-[150px] h-[150px] overflow-hidden border shadow-md "
+							className="w-[150px] h-[150px] overflow-hidden shadow-md "
 							onClick={() => inputEl.current.click()}
 						>
 							<img

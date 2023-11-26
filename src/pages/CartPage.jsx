@@ -4,10 +4,11 @@ import { BsTrash } from "react-icons/bs";
 import { useProduct } from "../hooks/use-product";
 import { Link } from "react-router-dom";
 import axios from "../config/axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CartPage() {
 	const {
+		getCartItems,
 		cartUser,
 		deleteCart,
 		deleteCartAll,
@@ -15,6 +16,10 @@ export default function CartPage() {
 		statusOrder,
 		setNumOrderId,
 	} = useProduct();
+
+	useEffect(() => {
+		getCartItems();
+	}, []);
 
 	const urlPathConfirmorder = "/cart/confirmorder";
 

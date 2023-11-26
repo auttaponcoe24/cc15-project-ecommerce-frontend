@@ -9,14 +9,16 @@ import { useAuth } from "../../hooks/use-auth";
 
 export default function ProductItem({ id, name, price, image }) {
 	const [isOpen, setIsOpen] = useState(false);
+	const [amount, setAmount] = useState(1);
 
-	const { cart, setCart, setCartUser, setNumOrder, numOrder, getCartItems } =
-		useProduct();
+	const { setCartUser, setNumOrder, numOrder, getCartItems } = useProduct();
 	const { authUser } = useAuth();
 
-	const handleClickAddProductMyCart = async (cart) => {
+	const handleClickAddProductMyCart = async () => {
 		try {
-			setCart({ ...cart, amount: 1 });
+			let cart = {
+				amount: amount,
+			};
 			const res = await axios.post(`/cart/mycart/${id}`, cart);
 			console.log(res.data);
 			setCartUser((p) => {
@@ -45,7 +47,7 @@ export default function ProductItem({ id, name, price, image }) {
 				{price}
 			</h1>
 			{authUser ? (
-				<Button onClick={() => handleClickAddProductMyCart(cart)}>
+				<Button onClick={() => handleClickAddProductMyCart()}>
 					ADD TO CART
 				</Button>
 			) : (

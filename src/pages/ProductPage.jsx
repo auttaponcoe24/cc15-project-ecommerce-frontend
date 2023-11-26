@@ -7,39 +7,56 @@ import { useProduct } from "../hooks/use-product.js";
 
 export default function ProductPage() {
 	const { authUser } = useAuth();
-	const { cart, setCart, getCartItems, setNumOrder, numOrder } = useProduct();
+	const { getCartItems, setNumOrder, numOrder } = useProduct();
 
 	const { productId } = useParams();
 	const [productUser, setProductUser] = useState("");
+	const [amount, setAmount] = useState(1);
 
 	useEffect(() => {
 		axios
 			.get(`/product/${productId}`)
 			.then((res) => {
-				console.log(res);
+				// console.log("res,res", res);
 				setProductUser(res.data.productId);
 			})
 			.catch((err) => console.log(err));
-	}, [productId]);
+	}, []);
 
-	const handleClickAddProductMyCart = async (cart) => {
+	useEffect(() => {
+		getCartItems();
+	}, []);
+
+	const handleClickAddProductMyCart = async () => {
+		let cart = {
+			amount: amount,
+		};
 		if (!authUser) {
-			// console.log("ff");
 			return <Navigate to="/login" />;
 		} else {
-			// setAmount({...amount, amount : 1})
 			try {
 				await axios.post(`/cart/mycart/${productId}`, cart);
 
 				setNumOrder(numOrder + 1);
-				getCartItems();
+				// getCartItems();
+				window.location.reload();
 			} catch (err) {
 				console.log(err);
 			}
 		}
 	};
 
-	console.log("prodcutUser", productUser);
+	// console.log("prodcutUser", productUser);
+	// console.log(cart);
+
+	const handleClickIncrease = () => {
+		setAmount(amount + 1);
+		getCartItems();
+	};
+	const handleClickDecrease = () => {
+		setAmount(amount - 1);
+		getCartItems();
+	};
 
 	return (
 		<>
@@ -62,37 +79,40 @@ export default function ProductPage() {
 								<div className="text-6xl">
 									{productUser.name}
 								</div>
-								<div>rating</div>
+								{/* <div>Rating</div> */}
 								<div>Detail</div>
 								<hr className="border w-full" />
 								<div className="flex gap-4 md:flex-row">
-									<div>price :</div>
-									<span className="text-4xl font-mono text-red-500 font-semibold">
-										{productUser.price}
+									{/* <div>price :</div> */}
+									<span className="text-3xl font-mono text-red-500 font-semibold font-serif">
+										{productUser.price} THB
 									</span>
 								</div>
-								<div>
+								<div className="flex gap-2 items-center justify-center">
 									<span>amount : </span>
-									<input
-										type="number"
-										onChange={(e) =>
-											setCart({
-												...cart,
-												amount: +e.target.value,
-											})
-										}
-										className="border px-2 py-2 text-xl font-semibold focus:outline-none rounded-lg"
-										value={cart.amount}
-										placeholder="AMOUNT PRODUCT..."
-									/>
+									<div className="flex self-center md:self-start items-center justify-start gap-4 border  rounded-lg border-gray-400">
+										<button
+											className="border border-collapse rounded-lg text-xl px-4 bg-red-700 text-white hover:text-red-500 outline-none"
+											onClick={handleClickDecrease}
+											disabled={amount === 1}
+										>
+											-
+										</button>
+										<div>{amount}</div>
+
+										<button
+											className="border border-collapse rounded-lg text-xl px-4 bg-blue-700 text-white hover:text-red-500 outline-none"
+											onClick={handleClickIncrease}
+										>
+											+
+										</button>
+									</div>
 								</div>
 								{authUser ? (
 									<Link to="/cart">
 										<Button
-											onClick={() =>
-												handleClickAddProductMyCart(
-													cart
-												)
+											onClick={
+												handleClickAddProductMyCart
 											}
 										>
 											ADD TO CART

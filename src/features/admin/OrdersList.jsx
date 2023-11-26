@@ -6,7 +6,7 @@ export default function OrdersList({ data }) {
 
 	return (
 		<>
-			<div className="flex flex-col px-4 py-4 max-h-[680px] overflow-auto will-change-scroll">
+			<div className="flex flex-col">
 				{data?.map((item, index) => (
 					<div key={index}>
 						<OrdersItem
