@@ -46,7 +46,7 @@ export default function ProductPage() {
 		}
 	};
 
-	// console.log("prodcutUser", productUser);
+	console.log("prodcutUser", productUser);
 	// console.log(cart);
 
 	const handleClickIncrease = () => {
@@ -76,11 +76,9 @@ export default function ProductPage() {
 							</div>
 
 							<div className="flex flex-col flex-1 gap-4 items-start">
-								<div className="text-6xl">
-									{productUser.name}
-								</div>
+								<div className="text-6xl">{productUser.name}</div>
 								{/* <div>Rating</div> */}
-								<div>Detail</div>
+								<div>{productUser.detail || "Detail"}</div>
 								<hr className="border w-full" />
 								<div className="flex gap-4 md:flex-row">
 									{/* <div>price :</div> */}
@@ -110,11 +108,7 @@ export default function ProductPage() {
 								</div>
 								{authUser ? (
 									<Link to="/cart">
-										<Button
-											onClick={
-												handleClickAddProductMyCart
-											}
-										>
+										<Button onClick={handleClickAddProductMyCart}>
 											ADD TO CART
 										</Button>
 									</Link>

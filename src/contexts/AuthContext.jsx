@@ -42,7 +42,7 @@ export default function AuthContextProvider({ children }) {
 		setAuthUser(res.data.user);
 	};
 
-	const logout = () => {
+	const logout = async () => {
 		removeAccessToken();
 		setAuthUser(null);
 		window.location.reload();

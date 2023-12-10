@@ -6,10 +6,10 @@ module.exports = withMT({
 	content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
 	theme: {
 		extend: {
-			// 	backgroundColor: {
-			// 		primary: "#FFC24B",
-			// 		secondary: "#EF4444",
-			// 	},
+			backgroundColor: {
+				primary: "#560bad",
+				secondary: "#b5179e",
+			},
 			textColor: {
 				primary: "#560bad",
 				secondary: "#b5179e",

@@ -42,10 +42,10 @@ export default function ProductItem({ id, name, price, image }) {
 				</div>
 			</Link>
 			<hr className="border w-[80%]" />
-			<div className="font-semibold text-xl">{name}</div>
-			<h1 className="text-red-400 font-mono font-semibold text-2xl">
-				{price}
-			</h1>
+			<div className="font-semibold text-lg px-2 text-center text-secondary">
+				{name}
+			</div>
+			<h1 className="text-red-400 font-mono font-semibold text-2xl">{price}</h1>
 			{authUser ? (
 				<Button onClick={() => handleClickAddProductMyCart()}>
 					ADD TO CART

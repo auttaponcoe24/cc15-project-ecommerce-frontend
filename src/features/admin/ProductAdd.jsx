@@ -15,6 +15,7 @@ export default function ProductAdd() {
 	const [input, setInput] = useState({
 		categoryId: 1,
 		name: "",
+		detail: "",
 		price: "",
 	});
 
@@ -33,6 +34,9 @@ export default function ProductAdd() {
 			}
 			if (input.name) {
 				formData.append("name", input.name);
+			}
+			if (input.detail) {
+				formData.append("detail", input.detail);
 			}
 			if (input.price) {
 				formData.append("price", input.price);
@@ -77,9 +81,22 @@ export default function ProductAdd() {
 					/>
 				</div>
 				<div className="flex flex-col gap-2">
-					<label className="text-lg font-semibold text-white">
-						Price
-					</label>
+					<label className="text-lg font-semibold text-white">Detail</label>
+					<input
+						name="detail"
+						className="outline-none px-2 py-2 w-full bg-slate-100 rounded-lg shadow-sm"
+						type="text"
+						value={input.detail}
+						onChange={(e) =>
+							setInput({
+								...input,
+								[e.target.name]: e.target.value,
+							})
+						}
+					/>
+				</div>
+				<div className="flex flex-col gap-2">
+					<label className="text-lg font-semibold text-white">Price</label>
 					<input
 						name="price"
 						className="outline-none px-2 py-2 w-full bg-slate-100 rounded-lg shadow-sm"
@@ -94,9 +111,7 @@ export default function ProductAdd() {
 					/>
 				</div>
 				<div className="flex flex-col gap-2">
-					<label className="text-lg font-semibold text-white">
-						Category
-					</label>
+					<label className="text-lg font-semibold text-white">Category</label>
 					<select
 						name="categoryId"
 						className="bg-slate-100 px-2 py-2 w-full rounded-lg shadow-sm"
@@ -129,9 +144,7 @@ export default function ProductAdd() {
 						>
 							<img
 								className="w-full h-full object-contain cursor-pointer"
-								src={`${
-									file ? URL.createObjectURL(file) : picblank
-								}`}
+								src={`${file ? URL.createObjectURL(file) : picblank}`}
 								alt="image"
 							/>
 						</div>

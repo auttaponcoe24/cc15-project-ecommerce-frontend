@@ -7,6 +7,7 @@ import { HiOutlineArchiveBox } from "react-icons/hi2";
 import { IoBagCheckSharp } from "react-icons/io5";
 import { FaCartPlus } from "react-icons/fa6";
 import { BiSolidCategoryAlt } from "react-icons/bi";
+import { TbLogout } from "react-icons/tb";
 import logo from "../../assets/image/logo.jpeg";
 
 const menuAdmin = [
@@ -33,6 +34,12 @@ const menuAdmin = [
 		to: "/admin/category",
 		text: "Categories",
 		icon: <BiSolidCategoryAlt />,
+	},
+	{
+		id: 5,
+		// to: "/admin/category",
+		text: "Logout",
+		icon: <TbLogout />,
 	},
 ];
 

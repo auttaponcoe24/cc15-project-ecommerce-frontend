@@ -11,12 +11,16 @@ export default function Header() {
 	const { authUser } = useAuth();
 	const { numOrder } = useProduct();
 	return (
-		<header className="grid grid-cols-2 md:grid-cols-4 px-6 py-2 bg-gray-500 shadow-lg sticky top-0 z-30">
+		<header className="grid grid-cols-2 md:grid-cols-4 px-6 py-2 bg-primary shadow-lg sticky top-0 z-30">
 			{/* Logo */}
-			<div className="justify-self-start self-center text-white">
+			<div className="justify-self-start self-center">
 				<Link to="/" className="hidden md:block">
-					<div className="w-12 h-12 rounded-full overflow-hidden ">
-						<img src={logo} alt="logo" className="w-full h-full" />
+					<div className="w-10 h-10 rounded-full overflow-hidden bg-transparent ">
+						<img
+							src={`https://cdn.pixabay.com/photo/2013/07/12/12/30/cogwheel-145804_1280.png`}
+							alt="logo"
+							className="w-full h-full"
+						/>
 					</div>
 				</Link>
 
@@ -36,7 +40,7 @@ export default function Header() {
 					</div>
 				)}
 				<Link to="/cart">
-					<BsCart className="cursor-pointer hover:text-orange-500" />
+					<BsCart className="cursor-pointer hover:text-orange-500" size={20} />
 				</Link>
 				{authUser ? (
 					<Dropdown />
