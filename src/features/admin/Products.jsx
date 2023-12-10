@@ -14,7 +14,7 @@ export default function Products() {
 			<div className="flex flex-col m-4 gap-2">
 				<Link to="/admin/products/add" className="self-start">
 					<button className="rounded-md text-white py-2 px-2 t bg-purple-500">
-						Add new product
+						Add New Product
 					</button>
 				</Link>
 				<div className="flex flex-col gap-2">

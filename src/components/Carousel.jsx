@@ -1,7 +1,7 @@
 import { Carousel } from "@material-tailwind/react";
-import pic1 from "../assets/image/pic1.png";
-import pic2 from "../assets/image/pic2.png";
-import pic3 from "../assets/image/pic3.png";
+import pic1 from "../assets/image/curo1.png";
+import pic2 from "../assets/image/curo2.png";
+import pic3 from "../assets/image/curo3.png";
 
 export default function CarouselCustomNavigation() {
 	return (
@@ -16,9 +16,7 @@ export default function CarouselCustomNavigation() {
 						<span
 							key={i}
 							className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-								activeIndex === i
-									? "w-8 bg-white"
-									: "w-4 bg-white/50"
+								activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
 							}`}
 							onClick={() => setActiveIndex(i)}
 						/>
@@ -26,21 +24,9 @@ export default function CarouselCustomNavigation() {
 				</div>
 			)}
 		>
-			<img
-				src={pic1}
-				alt="image 1"
-				className="h-full w-full object-cover"
-			/>
-			<img
-				src={pic2}
-				alt="image 2"
-				className="h-full w-full object-cover"
-			/>
-			<img
-				src={pic3}
-				alt="image 3"
-				className="h-full w-full object-cover"
-			/>
+			<img src={pic1} alt="image 1" className="h-full w-full object-cover" />
+			<img src={pic2} alt="image 2" className="h-full w-full object-cover" />
+			<img src={pic3} alt="image 3" className="h-full w-full object-cover" />
 		</Carousel>
 	);
 }

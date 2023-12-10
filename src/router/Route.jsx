@@ -14,6 +14,7 @@ import OrderPage from "../pages/OrderPage";
 import AdminPage from "../pages/AdminPage";
 import Orders from "../features/admin/Orders";
 import Products from "../features/admin/Products";
+import AdminCategoryPage from "../features/admin/CategoryPage";
 import AuthenticatedAdmin from "../features/auth/AuthenticatedAdmin";
 import LayoutAdmin from "../layout/LayoutAdmin";
 import ProductAdd from "../features/admin/ProductAdd";
@@ -111,6 +112,7 @@ const router = createBrowserRouter([
 				path: "products/add",
 				element: <ProductAdd />,
 			},
+			{ path: "category", element: <AdminCategoryPage /> },
 		],
 	},
 ]);

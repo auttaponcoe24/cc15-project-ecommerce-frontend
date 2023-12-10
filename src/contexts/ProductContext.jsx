@@ -128,12 +128,19 @@ function ProductContextProvider({ children }) {
 
 	const panddingChangeSuccess = async (orderId) => {
 		try {
-			const res = await axios.patch(
-				`/order/confirmorder/success/${orderId}`
-			);
+			const res = await axios.patch(`/order/confirmorder/success/${orderId}`);
 			// if (res.status === 200) {
 			// 	window.location.reload();
 			// }
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const createCategory = async (input) => {
+		try {
+			const res = await axios.post(`/product/category`, input);
+			console.log("createCategory", res);
 		} catch (err) {
 			console.log(err);
 		}
@@ -198,6 +205,7 @@ function ProductContextProvider({ children }) {
 				editProduct,
 				fetchOrder,
 				getOrder,
+				createCategory,
 			}}
 		>
 			{children}

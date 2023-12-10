@@ -5,22 +5,22 @@ const withMT = require("@material-tailwind/react/utils/withMT");
 module.exports = withMT({
 	content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
 	theme: {
-		// extend: {
-		// 	backgroundColor: {
-		// 		primary: "#FFC24B",
-		// 		secondary: "#EF4444",
-		// 	},
-		// 	textColor: {
-		// 		primary: "#EF4444",
-		// 		secondary: "#FFC24B",
-		// 	},
-		// 	outlineColor: {
-		// 		primary: "#EF4444",
-		// 	},
-		// 	borderColor: {
-		// 		primary: "#EF4444",
-		// 	},
-		// },
+		extend: {
+			// 	backgroundColor: {
+			// 		primary: "#FFC24B",
+			// 		secondary: "#EF4444",
+			// 	},
+			textColor: {
+				primary: "#560bad",
+				secondary: "#b5179e",
+			},
+			// 	outlineColor: {
+			// 		primary: "#EF4444",
+			// 	},
+			// 	borderColor: {
+			// 		primary: "#EF4444",
+			// 	},
+		},
 		fontFamily: {
 			kanit: ["Kanit", "sans-serif"],
 		},

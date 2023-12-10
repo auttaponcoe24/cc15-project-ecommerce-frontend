@@ -12,7 +12,7 @@ export default function HomePage() {
 
 	return (
 		<div className="flex flex-col justify-center items-center">
-			<div className="max-w-[1024px] my-2">
+			<div className="max-w-[1024px] my-2 border-[20px]  shadow-lg">
 				<Carousel />
 			</div>
 			{/* product */}
